@@ -6,13 +6,14 @@
 
 Este é um sistema de gestão de biblioteca online que permite a administração e consulta de livros em uma biblioteca. O sistema inclui funcionalidades para adicionar, atualizar, remover e listar livros, além de possibilitar a busca por títulos e autores.
 
-## Funcionalidades
+## Funcionalidades | Endpoints
 
-- **Adicionar Livros**: Permite adicionar novos livros à biblioteca.
-- **Atualizar Livros**: Atualize as informações dos livros existentes.
-- **Remover Livros**: Exclua livros da biblioteca.
-- **Listar Livros**: Liste todos os livros presentes na biblioteca.
-- **Buscar Livros**: Pesquise livros por título, autor ou editora.
+- ```GET /books```: Lista todos os livros.
+- ```GET /books/:id```: Lista o livro pelo identificador.
+- ```POST /books```: Adiciona novo livro.
+- ```PUT /:id```: Substitui algum elemento de livro.
+- ```PATCH /:id```: Atualiza o livro como um todo.
+- ```DELETE /:id```: Deleta o livro do banco de dados pelo id.
 
 ## Tecnologias Utilizadas
 
@@ -54,19 +55,6 @@ Este é um sistema de gestão de biblioteca online que permite a administração
     npm run migration:run
 
 5. **Iniciar o servidor**
-  
+
     ```bash
     npm start
-
-## Uso
-
-1. **Acessar a aplicação**
-- Abra o navegador e acesse ```http://localhost:3000``` para utilizar a interface da biblioteca.
-
-2. **Endpoints da API**
-- ```GET /books```: Lista todos os livros.
-- ```GET /books/:id```: Lista o livro pelo identificador.
-- ```POST /books```: Adiciona novo livro.
-- ```PUT /:id```: Substitui algum elemento de livro.
-- ```PATCH /:id```: Atualiza o livro como um todo.
-- ```DELETE /:id```: Deleta o livro do banco de dados pelo id. 
