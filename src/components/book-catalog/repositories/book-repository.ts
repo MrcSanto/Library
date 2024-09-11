@@ -1,7 +1,7 @@
 import Book from '../entities/book-entity'
 
 interface BookRepository{
-    getAll() : Promise<Book[]>;
+    getAll() : Promise<{ name: any; comment: any; book_id: any; editora: any }[]>;
 
     getById(id: number) : Promise<Book> | undefined;
     
