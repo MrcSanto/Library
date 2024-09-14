@@ -17,7 +17,7 @@ export class BookController{
         res.status(200).json(books);
     };
     getByid = async (res : Response , req : Request): Promise<void> => {
-        const book = await this.bookRepository.getById(parseInt(req.params.id));
+        const book = await this.bookRepository.getById(parseInt(req.params.id, 10));
         if(!book){
             res.status(404).json({message: 'Book Not Found'});
         } else {

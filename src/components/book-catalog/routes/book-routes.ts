@@ -7,8 +7,8 @@ const bookController = new BookController();
 router.get("/", bookController.getAll);
 router.get("/:id", bookController.getByid);
 router.post("/", bookController.create);
-router.put("/:id", bookController.replace);
-router.patch("/:id", bookController.update);
+router.put("/:id", bookController.update);
+router.patch("/:id", bookController.replace);
 router.delete("/:id", bookController.delete);
 
 export default router;
