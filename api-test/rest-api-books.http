@@ -1,0 +1,3 @@
+# Get all products
+GET localhost:5000/books
+Content-Type: application/json
