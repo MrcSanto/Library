@@ -1,5 +1,8 @@
 import {DataSource} from "typeorm";
 import BookEntity from "../components/book-catalog/entities/book-entity";
+import EditoraEntity from "../components/book-catalog/entities/editora-entity";
+import AutorEntity from "../components/book-catalog/entities/autor-entity";
+import GeneroEntity from "../components/book-catalog/entities/genero-entity";
 
 export const datasource: DataSource = new DataSource({
     type : 'postgres',
@@ -8,7 +11,7 @@ export const datasource: DataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [BookEntity],
+    entities: [BookEntity, EditoraEntity, AutorEntity, GeneroEntity],
     synchronize: false,
     logging: "all"
 })
