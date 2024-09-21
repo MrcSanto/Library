@@ -5,7 +5,7 @@ import {datasource} from '../../../config/datasource'
 import logger from "../../../utils/logger"
 import {BookListDto} from "../dto/book-list-dto";
 import {resolve} from "node:dns";
-import categoriaEntity from "../entities/categoria-entity";
+import CategoriaEntity from "../../category-catalog/entities/categoria-entity";
 import bookEntity from "../entities/book-entity";
 
 
@@ -58,7 +58,7 @@ export class BookController{
     create = async (req : Request, res : Response) : Promise<void> => {
         const { nome, autor, isbn, paginas, restantes, categoria_id } = req.body;
 
-        const cat_repo = datasource.getRepository(categoriaEntity);
+        const cat_repo = datasource.getRepository(CategoriaEntity);
         const cat = await cat_repo.findOneBy({categoriaId : categoria_id});
 
         if (!cat){

@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
-import CategoriaEntity from "./categoria-entity";
+import CategoriaEntity from "../../category-catalog/entities/categoria-entity";
 
 @Entity({ name: "book" })
 class BookEntity {

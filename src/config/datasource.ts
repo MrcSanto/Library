@@ -1,6 +1,6 @@
 import {DataSource} from "typeorm";
 import BookEntity from "../components/book-catalog/entities/book-entity";
-import CategoriaEntity from "../components/book-catalog/entities/categoria-entity";
+import CategoriaEntity from "../components/category-catalog/entities/categoria-entity";
 
 export const datasource: DataSource = new DataSource({
     type : 'postgres',
