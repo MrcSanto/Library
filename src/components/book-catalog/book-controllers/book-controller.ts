@@ -5,6 +5,8 @@ import {datasource} from '../../../config/datasource'
 import logger from "../../../utils/logger"
 import {BookListDto} from "../dto/book-list-dto";
 import {resolve} from "node:dns";
+import categoriaEntity from "../entities/categoria-entity";
+import bookEntity from "../entities/book-entity";
 
 
 export class BookController{
@@ -25,7 +27,7 @@ export class BookController{
     };
     getAllWithoutPage = async (req : Request, res : Response) : Promise<void> => {
         const result = await this.bookRepository.findAndCount({
-           relations:  ['autor', 'genero', 'editora'],
+           relations:  ['categoria'],
         });
         const bookList : BookListDto = {data: result[0], total: result[1]};
         res.status(200).json(bookList);
@@ -45,7 +47,7 @@ export class BookController{
             where: {
                 bookId : parseInt(req.params.id)
             },
-            relations: ['autor', 'genero', 'editora']
+            relations: ['categoria']
         });
         if (!book) {
             res.status(404).send("Book not found");
@@ -54,8 +56,26 @@ export class BookController{
         }
     };
     create = async (req : Request, res : Response) : Promise<void> => {
-        const newBook = await this.bookRepository.create(req.body);
-        res.status(201).json(newBook);
+        const { nome, autor, isbn, paginas, restantes, categoria_id } = req.body;
+
+        const cat_repo = datasource.getRepository(categoriaEntity);
+        const cat = await cat_repo.findOneBy({categoriaId : categoria_id});
+
+        if (!cat){
+            res.status(404).send("Categoria nao existe");
+            return
+        }
+
+        const newBook = new BookEntity();
+        newBook.nome = nome;
+        newBook.autor = autor;
+        newBook.isbn = isbn;
+        newBook.paginas = paginas;
+        newBook.restantes = restantes;
+        newBook.categoria = cat;
+
+        const savedBook = await datasource.getRepository(bookEntity).save(newBook);
+        res.status(201).json(savedBook);
     };
     replace = async (req: Request, res: Response): Promise<void> => {
         const book_id = parseInt(req.params.id);
@@ -77,8 +97,8 @@ export class BookController{
         if (result.affected === 0) {
             res.status(404).send("Book not found");
         } else {
-            const updatedProduct = await this.bookRepository.findOneBy({bookId : book_id});
-            res.status(200).json(updatedProduct);
+            const updatedBook = await this.bookRepository.findOneBy({bookId : book_id});
+            res.status(200).json(updatedBook);
         }
     };
     delete = async (req : Request, res : Response) : Promise<void> => {

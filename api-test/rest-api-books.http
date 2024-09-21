@@ -1,3 +1,7 @@
 # Get all products
-GET localhost:5000/books/2
+GET localhost:5000/library/books/1
+Content-Type: application/json
+
+###
+GET localhost:5000/library/autors/2
 Content-Type: application/json

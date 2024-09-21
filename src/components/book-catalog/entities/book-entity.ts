@@ -1,36 +1,29 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
-import EditoraEntity from "./editora-entity";
-import AutorEntity from "./autor-entity";
-import GeneroEntity from "./genero-entity";
+import CategoriaEntity from "./categoria-entity";
 
 @Entity({ name: "book" })
 class BookEntity {
     @PrimaryGeneratedColumn({ name: 'book_id' })
     bookId!: number;
 
-    @Column({ name: 'book_name', type: 'varchar', length: 100, nullable: false })
-    name!: string;
+    @Column({ name: 'book_nome', type: 'varchar', length: 50, nullable: false })
+    nome!: string;
 
-    @ManyToOne(() => EditoraEntity)
-    @JoinColumn({ name: 'book_editora' })
-    editora!: EditoraEntity;
+    @Column({ name: 'book_autor', type: 'varchar', length: 50, nullable: false })
+    autor!: string;
 
-    @ManyToOne(() => AutorEntity)
-    @JoinColumn({ name: 'book_autor' })
-    autor!: AutorEntity;
+    @Column({ name: 'book_isbn', type: 'int', unique: true, nullable: true })
+    isbn!: number;
 
-    @ManyToOne(() => GeneroEntity)
-    @JoinColumn({ name: 'book_genero' })
-    genero!: GeneroEntity;
+    @ManyToOne(() => CategoriaEntity, {nullable: false})
+    @JoinColumn({ name: 'book_categoria' })
+    categoria!: CategoriaEntity | null;
 
-    @Column({ name: 'book_remaining', type: 'int', nullable: false })
-    remaining!: number;
+    @Column({ name: 'book_paginas', type: 'int', nullable: false })
+    paginas!: number;
 
-    @Column({ name: 'book_numpages', type: 'int', nullable: false })
-    numPages!: number;
-
-    @Column({ name: 'book_ranking', type: 'smallint', nullable: true })
-    ranking!: number;
+    @Column({ name: 'book_restantes', type: 'int', nullable: false })
+    restantes!: number;
 }
 
 export default BookEntity;
