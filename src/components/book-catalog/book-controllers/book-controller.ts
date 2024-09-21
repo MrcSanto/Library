@@ -62,7 +62,7 @@ export class BookController{
         const cat = await cat_repo.findOneBy({categoriaId : categoria_id});
 
         if (!cat){
-            res.status(404).send("Categoria nao existe");
+            res.status(400).send("Categoria nao existe");
             return
         }
 

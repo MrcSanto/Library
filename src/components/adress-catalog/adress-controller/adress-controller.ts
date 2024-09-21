@@ -2,7 +2,6 @@ import {Request, Response} from 'express'
 import {Repository} from 'typeorm'
 import {DataSource} from "typeorm";
 import logger from "../../../utils/logger";
-import {Logger} from "winston";
 import EnderecoEntity from "../entities/adress-entity";
 import {datasource} from "../../../config/datasource";
 import {AdressListDto} from "../dto/adress-list-dto";

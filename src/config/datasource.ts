@@ -2,6 +2,7 @@ import {DataSource} from "typeorm";
 import BookEntity from "../components/book-catalog/entities/book-entity";
 import CategoriaEntity from "../components/category-catalog/entities/categoria-entity";
 import AdressEntity from "../components/adress-catalog/entities/adress-entity";
+import ClienteEntity from "../components/client-catalog/entities/cliente-entity";
 
 export const datasource: DataSource = new DataSource({
     type : 'postgres',
@@ -10,7 +11,7 @@ export const datasource: DataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [BookEntity, CategoriaEntity, AdressEntity],
+    entities: [BookEntity, CategoriaEntity, AdressEntity, ClienteEntity],
     synchronize: false,
     logging: "all"
 })
