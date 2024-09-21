@@ -2,8 +2,6 @@ import {Request, Response} from 'express';
 import {Repository} from 'typeorm';
 import CategoriaEntity from "../entities/categoria-entity";
 import {datasource} from "../../../config/datasource";
-import logger from "../../../utils/logger";
-import CategoriaRoutes from "../routes/categoria-routes";
 
 export class CategoriaController {
     private categoriaRepository: Repository<CategoriaEntity>
@@ -33,7 +31,7 @@ export class CategoriaController {
         newCategoria.descricao = descricao;
 
         const savedCategoria = await datasource.getRepository(CategoriaEntity).save(newCategoria);
-        res.status(201).json(newCategoria);
+        res.status(201).json(savedCategoria);
     };
     replace = async (req: Request, res : Response): Promise<void> => {
         const categoria_id = parseInt(req.params.id);
