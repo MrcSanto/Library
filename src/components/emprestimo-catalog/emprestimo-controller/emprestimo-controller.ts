@@ -53,23 +53,29 @@ export class EmprestimoController{
         }
     };
     create = async (req: Request, res: Response): Promise<void> => {
+        //
         const {emprestimoClient, emprestimoLivro, dataEmprestimo, dataDevolucao} = req.body;
 
+        //buscando o cliente no banco de dados pelo id
         const client_repo = datasource.getRepository(ClienteEntity);
         const cliente = await client_repo.findOneBy({clientId : emprestimoClient});
 
+        // buscando o livro no banco de dados pelo id
         const emprestimo_repo = datasource.getRepository(BookEntity);
         const emprestimo = await emprestimo_repo.findOneBy({bookId : emprestimoLivro});
 
+        // verificando se o cliente ou o livro não existem, retornando erro 400
         if (!cliente || !emprestimo) {
             res.status(400).send("Verificar os parametros informados");
         } else{
+            // criando uma nova instância de EmprestimoEntity e atribuindo os valores recebidos
             const newEmprestimo = new EmprestimoEntity();
             newEmprestimo.emprestimoClient = emprestimoClient;
             newEmprestimo.emprestimoLivro = emprestimoLivro;
             newEmprestimo.dataEmprestimo = dataEmprestimo;
             newEmprestimo.dataDevolucao = dataDevolucao;
 
+            // salvando o novo empréstimo no banco de dados
             const savedEmprestimo = await datasource.getRepository(EmprestimoEntity).save(newEmprestimo);
             res.status(201).json(savedEmprestimo);
         }

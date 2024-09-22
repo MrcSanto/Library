@@ -47,8 +47,10 @@ export class AdressController {
         }
     };
     create = async (req: Request, res: Response): Promise<void> => {
+        //extraindo os campos do corpo da req
         const {rua, numero, complemento, bairro, cidade, cep} = req.body;
 
+        // e criando uma nova instancia de EnderecoEntity e atribuindo os valores do body
         const newEndereco =  new EnderecoEntity();
         newEndereco.rua = rua;
         newEndereco.numero = numero;
@@ -57,7 +59,9 @@ export class AdressController {
         newEndereco.cidade = cidade;
         newEndereco.cep = cep;
 
+        //salvando os dados no banco usando typeORM
         const savedEndereco = await datasource.getRepository(EnderecoEntity).save(newEndereco);
+        //e retornando 201
         res.status(201).json(savedEndereco);
     };
     replace = async (req: Request, res: Response): Promise<void> => {

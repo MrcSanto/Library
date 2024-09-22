@@ -56,8 +56,10 @@ export class BookController{
         }
     };
     create = async (req : Request, res : Response) : Promise<void> => {
+        //extraindo os valores do corpo da requisicao
         const { nome, autor, isbn, paginas, restantes, categoria_id } = req.body;
 
+        // obtendo o repositório da entidade Categoria e buscando a categoria pelo ID
         const cat_repo = datasource.getRepository(CategoriaEntity);
         const cat = await cat_repo.findOneBy({categoriaId : categoria_id});
 
@@ -66,6 +68,7 @@ export class BookController{
             return
         }
 
+        //instanciando BookEntity e atribuindo os valores recebidos
         const newBook = new BookEntity();
         newBook.nome = nome;
         newBook.autor = autor;
@@ -74,6 +77,7 @@ export class BookController{
         newBook.restantes = restantes;
         newBook.categoria = cat;
 
+        //salvando o livro no banco usando typeORM
         const savedBook = await datasource.getRepository(bookEntity).save(newBook);
         res.status(201).json(savedBook);
     };

@@ -50,8 +50,10 @@ export class ClientController {
         }
     };
     create = async (req: Request, res: Response): Promise<void> => {
+        //extraindo os valores
         const {clientCpf, clientNome, clientAdress} = req.body;
 
+        // obtendo o repositório da entidade Endereco e buscando o endereço pelo ID
         const adress_repo = datasource.getRepository(AdressEntity);
         const adress = await adress_repo.findOneBy({enderecoId : clientAdress});
         if (!adress){
@@ -59,11 +61,13 @@ export class ClientController {
             return
         }
 
+        //criando nova instancia e atribuindo os valores
         const newCliente = new ClienteEntity();
         newCliente.clientCpf = clientCpf;
         newCliente.clientNome = clientNome;
         newCliente.clientAdress = adress;
 
+        // e salvando a nova instancia no banco usando o typeORM
         const savedCliente = await datasource.getRepository(ClienteEntity).save(newCliente);
         res.status(201).json(savedCliente);
     };

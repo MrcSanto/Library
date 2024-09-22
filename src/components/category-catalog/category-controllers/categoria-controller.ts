@@ -9,6 +9,8 @@ export class CategoriaController {
         this.categoriaRepository = datasource.getRepository(CategoriaEntity);
     }
 
+    //Categoria nao possui um DTO pois não são muitas categorias que existem
+    //nao vi motivo para uma consulta paginada.
     getAll = async (req: Request, res: Response): Promise<void> => {
         const categorias = await this.categoriaRepository.find();
         res.status(200).json(categorias);
@@ -24,12 +26,15 @@ export class CategoriaController {
         }
     };
     create = async (req: Request, res : Response): Promise<void> => {
+        //extraindo os dados do corpo da requisição
         const {nome, descricao} = req.body;
 
+        //instanciando a nova categoria e atribuindo os valores
         const newCategoria = new CategoriaEntity();
         newCategoria.nome = nome;
         newCategoria.descricao = descricao;
 
+        //e salvando a nova instancia no banco usando typeORM
         const savedCategoria = await datasource.getRepository(CategoriaEntity).save(newCategoria);
         res.status(201).json(savedCategoria);
     };
