@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "4313a5cb-f5ed-4785-861a-83c48247c84b",
+		"name": "API BIBLIOTECA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37882035"
+	},
+	"item": [
+		{
+			"name": "Livros",
+			"item": [
+				{
+					"name": "Consultar todos livros da biblioteca",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/library/books",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta livro por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/books/1",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/books/?skip=2&take=3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "2"
+								},
+								{
+									"key": "take",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir livro na biblioteca",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"O Hobbit\",\r\n    \"autor\": \"J.R.R. Tolkien\",\r\n    \"isbn\": 654321,\r\n    \"paginas\": 310,\r\n    \"restantes\": 5,\r\n    \"categoria_id\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/books",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar livro da biblioteca",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/books/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Livro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"O Hobbitt\",\r\n    \"autor\": \"J.R.R. Tolkienn\",\r\n    \"isbn\": 111222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/books/11",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Att book parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"O Hobbita\",\r\n    \"autor\": \"J.R.R. Tolkiena\",\r\n    \"isbn\": 654321222,\r\n    \"paginas\": 3102,\r\n    \"restantes\": 25,\r\n    \"categoria_id\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/books/11",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"books",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Listar todas as categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar categoria por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/categories/18",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criando categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"TESTE\",\r\n    \"descricao\": \"CATEGORIA PARA TESTE\"\r\n}\r\n        ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletando categoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/categories/17",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizando Categoria",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"MAIS UM TESTE\",\r\n    \"descricao\": \"TESTANDO NOVAMENTE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/categories/18",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizacao parcial Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Categoria contendo literaturas de terror.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/categories/9",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"categories",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Endereço",
+			"item": [
+				{
+					"name": "Consulta Paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/adresses/?skip=2&take=3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "2"
+								},
+								{
+									"key": "take",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta todos os enderecos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/adresses",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Endereco por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/adresses/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rua\": \"Rua Jacob Gremmelmaier\",\r\n    \"numero\" : \"123\",\r\n    \"complemento\": \"beco\",\r\n    \"bairro\": \"centro\",\r\n    \"cidade\" : \"Passo Fundo\",\r\n    \"cep\" : \"99999-000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/adresses",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Endereco Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"complemento\": \"Apartamento\",\r\n    \"numero\" : \"981\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/adresses/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Endereco",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rua\": \"Rua Jacob Gremmelmaiereee\",\r\n    \"numero\" : \"1000\",\r\n    \"complemento\": \"beco\",\r\n    \"bairro\": \"centro\",\r\n    \"cidade\" : \"Getúlio Vargas\",\r\n    \"cep\" : \"99900-000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/adresses/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta endereço",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/adresses/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"adresses",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Consulta todos os clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/clients/?skip=2&take=3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "2"
+								},
+								{
+									"key": "take",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Cliente por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/clients/11",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientCpf\" : \"02962255601\",\r\n    \"clientNome\": \"Teste da Silva\",\r\n    \"clientAdress\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Cliente Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientCpf\": \"02304512391\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/clients/12",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Dados Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientCpf\" : \"11962255601\",\r\n    \"clientNome\": \"Joao da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/clients/11",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/clients/11",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"clients",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Emprestimos",
+			"item": [
+				{
+					"name": "Consulta todos os Emprestimos ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/emprestimos",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Emprestimo por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/emprestimos/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/emprestimos/?skip=2&take=3",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos",
+								""
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "2"
+								},
+								{
+									"key": "take",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Emprestimo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emprestimoClient\": 2,\r\n    \"emprestimoLivro\": 3,\r\n    \"dataEmprestimo\": \"2024-09-19\",\r\n    \"dataDevolucao\": \"2024-09-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/emprestimos",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Emprestimo Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emprestimoLivro\" : 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/emprestimos/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Emprestimo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emprestimoClient\": 8,\r\n    \"emprestimoLivro\": 7,\r\n    \"dataEmprestimo\": \"2024-09-19\",\r\n    \"dataDevolucao\": \"2024-09-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/library/emprestimos/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta Emprestimo do Banco",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/library/emprestimos/21",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"library",
+								"emprestimos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

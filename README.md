@@ -1,6 +1,6 @@
 # Sistema de Gestão de Biblioteca Online
 
-*O projeto ainda não está pronto...*
+![Diagrama do Banco](/db/Conceitual_1.png)
 
 ## Descrição
 
@@ -8,12 +8,16 @@ Este é um sistema de gestão de biblioteca online que permite a administração
 
 ## Funcionalidades | Endpoints
 
-- ```GET /books```: Lista todos os livros.
-- ```GET /books/:id```: Lista o livro pelo identificador.
-- ```POST /books```: Adiciona novo livro.
-- ```PUT /:id```: Substitui algum elemento de livro.
-- ```PATCH /:id```: Atualiza o livro como um todo.
-- ```DELETE /:id```: Deleta o livro do banco de dados pelo id.
+Foi desenvolvido um CRUD completo para cada entidade, são eles:
+- ```/library/books```
+- ```/library/categories```
+- ```/library/adresses```
+- ```/library/clients```
+- ```/library/emprestimos```
+
+Do mesmo modo, temos um endpoint de healthcheck para avaliar se a API está em pleno funcionamento.
+
+- ```/library/healthcheck```
 
 ## Tecnologias Utilizadas
 
