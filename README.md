@@ -52,13 +52,4 @@ Do mesmo modo, temos um endpoint de healthcheck para avaliar se a API está em p
     DB_NAME=nome_do_banco
     DB_PASSWORD=sua_senha
     DB_PORT=5432
-
-4. **Migrar o Banco de Dados**
-- Execute as migrações para criar as tabelas no Banco de Dados:
-    ```bash
-    npm run migration:run
-
-5. **Iniciar o servidor**
-
-    ```bash
-    npm start
+    PORT=porta_para_rodar_aplicacao
