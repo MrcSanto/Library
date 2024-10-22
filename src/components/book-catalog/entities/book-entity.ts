@@ -24,6 +24,9 @@ class BookEntity {
 
     @Column({ name: 'book_restantes', type: 'int', nullable: false })
     restantes!: number;
+
+    @Column({ name: 'book_qtd_emprestados', type: 'int', nullable: false })
+    qtdEmprestimos!: number;
 }
 
 export default BookEntity;

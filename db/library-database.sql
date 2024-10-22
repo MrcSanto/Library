@@ -11,6 +11,7 @@ CREATE TABLE book (
     book_categoria INTEGER,
     book_paginas INTEGER,
     book_restantes INTEGER,
+    book_qtd_emprestados INTEGER,
     FOREIGN KEY (book_categoria) REFERENCES categoria(categoria_id)
 );
 
@@ -60,17 +61,17 @@ INSERT INTO categoria (categoria_nome, categoria_desc) VALUES
 ('Livros de Filosofia', 'Obras que discutem questões filosóficas e existenciais'),
 ('Contos', 'Coleções de contos curtos e narrativas breves');
 
-INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes) VALUES
-('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5),
-('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3),
-('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2),
-('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4),
-('A Torre Negra', 'Stephen King', 778899, 9, 820, 6),
-('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7),
-('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5),
-('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4),
-('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3),
-('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2);
+INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes, book_qtd_emprestados) VALUES
+('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5, 13),
+('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3, 1),
+('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2, 32),
+('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4, 12),
+('A Torre Negra', 'Stephen King', 778899, 9, 820, 6, 51),
+('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7, 22),
+('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5, 17),
+('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4, 0),
+('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3, 5),
+('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2, 31);
 
 INSERT INTO endereco (rua, numero, complemento, bairro, cidade, cep) VALUES
 ('Rua das Flores', '123', 'Apto 101', 'Centro', 'São Paulo', '01001-000'),
