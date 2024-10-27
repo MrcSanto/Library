@@ -44,6 +44,14 @@ CREATE TABLE emprestimos(
     FOREIGN KEY (emprestimo_livro) REFERENCES book(book_id)
 );
 
+CREATE TABLE admin (
+   admin_id SERIAL PRIMARY KEY,
+   email VARCHAR(255) NOT NULL UNIQUE,
+   password VARCHAR(255) NOT NULL,
+   nome VARCHAR(100) NOT NULL
+);
+
+
 INSERT INTO categoria (categoria_nome, categoria_desc) VALUES
 ('Ficção', 'Livros de ficção narrativa'),
 ('Fantasia', 'Livros com elementos fantásticos e sobrenaturais'),
@@ -132,6 +140,10 @@ INSERT INTO emprestimos (emprestimo_client, emprestimo_livro, data_emprestimo, d
 (8, 8, '2024-09-16', NULL),
 (9, 9, '2024-09-18', '2024-09-29'),
 (10, 10, '2024-09-20', NULL);
+
+INSERT INTO admin (email, password, nome) VALUES
+  ('admin1@upf.br', '123456', 'Secagonopeida Dos Santos'),
+  ('admin2@upf.br', '789123', 'Pintomole Pinto da Silva');
 
 
 
