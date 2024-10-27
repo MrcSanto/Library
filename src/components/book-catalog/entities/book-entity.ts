@@ -27,6 +27,9 @@ class BookEntity {
 
     @Column({ name: 'book_qtd_emprestados', type: 'int', nullable: false })
     qtdEmprestimos!: number;
+
+    @Column({ name: 'book_data_add', type: 'date', nullable: false })
+    dataAdd!: Date;
 }
 
 export default BookEntity;

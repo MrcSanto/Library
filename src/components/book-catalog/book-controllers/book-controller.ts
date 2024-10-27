@@ -18,9 +18,20 @@ export class BookController{
 
     getAll = async (req: Request, res: Response): Promise<void> => {
         if (req.query.skip && req.query.take){
-            logger.debug(`Getting books from skip: ${req.query.skip}`);
-            logger.debug(`Getting books from take: ${req.query.take}`);
-            return this.getAllPaged(req, res);
+            const skip = parseInt(req.query.skip as string);
+            const take = parseInt(req.query.take as string);
+
+            // so aceita valores > 0
+            if (skip == 0){
+                res.status(400).send("skip > 0")
+            }
+
+            logger.debug(`Getting books from skip: ${skip}`);
+            logger.debug(`Getting books from take: ${take}`);
+
+            const page = (skip - 1) * take
+
+            return this.getAllPaged(page, take, res);
         } else {
             return this.getAllWithoutPage(req, res);
         }
@@ -32,14 +43,15 @@ export class BookController{
         const bookList : BookListDto = {data: result[0], total: result[1]};
         res.status(200).json(bookList);
     };
-    getAllPaged = async (req: Request, res: Response): Promise<void> => {
-        const skip = parseInt(req.query.skip as string);
-        const take = parseInt(req.query.take as string);
-
-        const result = await this.bookRepository.findAndCount({
-           skip, take
+    getAllPaged = async (skip : number, take : number, res : Response): Promise<void> => {
+        const [data, total] = await this.bookRepository.findAndCount({
+            skip,
+            take,
+            relations: ['categoria'],
         });
-        const bookList : BookListDto = {data: result[0], total: result[1]};
+
+        const bookList: BookListDto = { data, total };
+
         res.status(200).json(bookList);
     };
     getByid = async (req: Request, res: Response): Promise<void> => {
@@ -55,6 +67,36 @@ export class BookController{
             res.status(200).json(book);
         }
     };
+    getMostPopular = async (req: Request, res: Response): Promise<void> => {
+        const {limit} = req.body || {}
+
+        const bookLimit = limit ? parseInt(limit) : 4;
+
+        const mostPopularBooks = await this.bookRepository.find({
+            order: {
+                qtdEmprestimos: "DESC"
+            },
+            take: bookLimit,
+            relations: ["categoria"]
+        });
+
+        res.status(200).json(mostPopularBooks);
+    }
+    getMostRecent = async (req: Request, res: Response): Promise<void> => {
+        const {limit} = req.body || {}
+
+        const bookLimit = limit ? parseInt(limit) : 4;
+
+        const mostRecentBooks = await this.bookRepository.find({
+            order : {
+                dataAdd : "DESC"
+            },
+            take : bookLimit,
+            relations : ['categoria']
+        });
+
+        res.status(200).json(mostRecentBooks);
+    }
     create = async (req : Request, res : Response) : Promise<void> => {
         //extraindo os valores do corpo da requisicao
         const { nome, autor, isbn, paginas, restantes, categoria_id } = req.body;
