@@ -12,6 +12,7 @@ CREATE TABLE book (
     book_paginas INTEGER,
     book_restantes INTEGER,
     book_qtd_emprestados INTEGER,
+    book_data_add DATE,
     FOREIGN KEY (book_categoria) REFERENCES categoria(categoria_id)
 );
 
@@ -61,17 +62,27 @@ INSERT INTO categoria (categoria_nome, categoria_desc) VALUES
 ('Livros de Filosofia', 'Obras que discutem questões filosóficas e existenciais'),
 ('Contos', 'Coleções de contos curtos e narrativas breves');
 
-INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes, book_qtd_emprestados) VALUES
-('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5, 13),
-('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3, 1),
-('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2, 32),
-('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4, 12),
-('A Torre Negra', 'Stephen King', 778899, 9, 820, 6, 51),
-('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7, 22),
-('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5, 17),
-('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4, 0),
-('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3, 5),
-('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2, 31);
+INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes, book_qtd_emprestados, book_data_add) VALUES
+('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5, 13, '2023-01-10'),
+('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3, 1, '2023-02-15'),
+('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2, 32, '2023-03-20'),
+('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4, 12, '2023-04-25'),
+('A Torre Negra', 'Stephen King', 778899, 9, 820, 6, 51, '2023-05-30'),
+('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7, 22, '2023-06-10'),
+('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5, 17, '2023-07-15'),
+('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4, 0, '2023-08-20'),
+('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3, 5, '2023-09-25'),
+('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2, 31, '2023-10-30'),
+('1984', 'George Orwell', 112358, 1, 328, 4, 15, '2023-11-01'),
+('O Alquimista', 'Paulo Coelho', 987654, 5, 208, 6, 10, '2023-11-05'),
+('O Hobbit', 'J.R.R. Tolkien', 654321, 2, 310, 3, 20, '2023-11-10'),
+('A Menina que Roubava Livros', 'Markus Zusak', 321654, 7, 552, 2, 18, '2023-11-15'),
+('O Caçador de Pipas', 'Khaled Hosseini', 135791, 3, 371, 5, 11, '2023-11-20'),
+('A Culpa é das Estrelas', 'John Green', 246813, 8, 313, 4, 9, '2023-11-25'),
+('A Guerra dos Tronos', 'George R.R. Martin', 102030, 9, 694, 3, 7, '2023-12-01'),
+('O Livro dos Espíritos', 'Allan Kardec', 314159, 4, 800, 2, 5, '2023-12-05'),
+('O Pássaro da Noite', 'Sérgio Sant’Anna', 271828, 6, 350, 3, 4, '2023-12-10'),
+('Cem Anos de Solidão', 'Gabriel García Márquez', 161803, 5, 417, 2, 3, '2023-12-15');
 
 INSERT INTO endereco (rua, numero, complemento, bairro, cidade, cep) VALUES
 ('Rua das Flores', '123', 'Apto 101', 'Centro', 'São Paulo', '01001-000'),
@@ -122,6 +133,5 @@ INSERT INTO emprestimos (emprestimo_client, emprestimo_livro, data_emprestimo, d
 (9, 9, '2024-09-18', '2024-09-29'),
 (10, 10, '2024-09-20', NULL);
 
-select * from categoria
 
 
