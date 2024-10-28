@@ -4,8 +4,11 @@ import bookRoutes from "./components/book-catalog/routes/book-routes";
 import categoriaRoutes from "./components/category-catalog/routes/categoria-routes";
 import adressRoutes from "./components/adress-catalog/routes/adress-routes";
 import clientRoutes from "./components/client-catalog/routes/client-routes";
+import loginRoutes from "./components/login-catalog/routes/login-routes";
 import errorHandler from "./middlewares/error-handler";
 import emprestimoRoutes from "./components/emprestimo-catalog/routes/emprestimo-routes";
+
+import Auth from "./middlewares/auth";
 
 const app = express();
 
@@ -27,8 +30,9 @@ app.use('/library/healthcheck', (req: Request, res: Response) => {
 app.use('/library/books', bookRoutes);
 app.use('/library/categories', categoriaRoutes);
 app.use('/library/adresses', adressRoutes);
-app.use('/library/clients', clientRoutes);
-app.use('/library/emprestimos', emprestimoRoutes);
+app.use('/library/clients', Auth.authenticate,  clientRoutes);
+app.use('/library/emprestimos',Auth.authenticate, emprestimoRoutes);
+app.use('/library', loginRoutes)
 
 app.use(errorHandler);
 

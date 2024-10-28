@@ -4,6 +4,7 @@ import CategoriaEntity from "../components/category-catalog/entities/categoria-e
 import AdressEntity from "../components/adress-catalog/entities/adress-entity";
 import ClienteEntity from "../components/client-catalog/entities/cliente-entity";
 import EmprestimoEntity from "../components/emprestimo-catalog/entities/emprestimo-entity";
+import AdminEntity from "../components/login-catalog/entities/admin-entity";
 
 export const datasource: DataSource = new DataSource({
     type : 'postgres',
@@ -12,7 +13,15 @@ export const datasource: DataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [BookEntity, CategoriaEntity, AdressEntity, ClienteEntity, ClienteEntity, EmprestimoEntity],
+    entities: [
+        BookEntity,
+        CategoriaEntity,
+        AdressEntity,
+        ClienteEntity,
+        ClienteEntity,
+        EmprestimoEntity,
+        AdminEntity
+    ],
     synchronize: false,
     logging: "all"
 })
