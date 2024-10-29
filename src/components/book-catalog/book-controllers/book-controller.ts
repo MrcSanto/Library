@@ -99,7 +99,7 @@ export class BookController{
     }
     create = async (req : Request, res : Response) : Promise<void> => {
         //extraindo os valores do corpo da requisicao
-        const { nome, autor, isbn, paginas, restantes, categoria_id } = req.body;
+        const { nome, autor, isbn, paginas, restantes, categoria_id, qtd_emprestimos, data_add} = req.body;
 
         // obtendo o repositório da entidade Categoria e buscando a categoria pelo ID
         const cat_repo = datasource.getRepository(CategoriaEntity);
@@ -118,6 +118,12 @@ export class BookController{
         newBook.paginas = paginas;
         newBook.restantes = restantes;
         newBook.categoria = cat;
+
+        // Verificando se data_add é nulo e, se for, define como a data atual
+        newBook.dataAdd = data_add ? new Date(data_add) : new Date();
+
+        // verificando se qtd_emprestimos é nulo, se for nulo entao é definido como 0
+        newBook.qtdEmprestimos = qtd_emprestimos ?? 0;
 
         //salvando o livro no banco usando typeORM
         const savedBook = await datasource.getRepository(bookEntity).save(newBook);
