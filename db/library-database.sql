@@ -13,8 +13,10 @@ CREATE TABLE book (
     book_restantes INTEGER,
     book_qtd_emprestados INTEGER,
     book_data_add DATE,
+    book_imagem VARCHAR(255),
     FOREIGN KEY (book_categoria) REFERENCES categoria(categoria_id)
 );
+
 
 CREATE TABLE endereco (
     endereco_id SERIAL PRIMARY KEY,
@@ -30,7 +32,7 @@ CREATE TABLE cliente(
     client_id SERIAL PRIMARY KEY,
     client_cpf VARCHAR(11) UNIQUE,
     client_nome VARCHAR(50) NOT NULL,
-    client_adress INTEGER NOT NULL,
+    client_adress INTEGER,
     FOREIGN KEY (client_adress) REFERENCES endereco(endereco_id)
 );
 
@@ -70,27 +72,27 @@ INSERT INTO categoria (categoria_nome, categoria_desc) VALUES
 ('Livros de Filosofia', 'Obras que discutem questões filosóficas e existenciais'),
 ('Contos', 'Coleções de contos curtos e narrativas breves');
 
-INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes, book_qtd_emprestados, book_data_add) VALUES
-('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5, 13, '2023-01-10'),
-('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3, 1, '2023-02-15'),
-('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2, 32, '2023-03-20'),
-('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4, 12, '2023-04-25'),
-('A Torre Negra', 'Stephen King', 778899, 9, 820, 6, 51, '2023-05-30'),
-('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7, 22, '2023-06-10'),
-('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5, 17, '2023-07-15'),
-('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4, 0, '2023-08-20'),
-('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3, 5, '2023-09-25'),
-('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2, 31, '2023-10-30'),
-('1984', 'George Orwell', 112358, 1, 328, 4, 15, '2023-11-01'),
-('O Alquimista', 'Paulo Coelho', 987654, 5, 208, 6, 10, '2023-11-05'),
-('O Hobbit', 'J.R.R. Tolkien', 654321, 2, 310, 3, 20, '2023-11-10'),
-('A Menina que Roubava Livros', 'Markus Zusak', 321654, 7, 552, 2, 18, '2023-11-15'),
-('O Caçador de Pipas', 'Khaled Hosseini', 135791, 3, 371, 5, 11, '2023-11-20'),
-('A Culpa é das Estrelas', 'John Green', 246813, 8, 313, 4, 9, '2023-11-25'),
-('A Guerra dos Tronos', 'George R.R. Martin', 102030, 9, 694, 3, 7, '2023-12-01'),
-('O Livro dos Espíritos', 'Allan Kardec', 314159, 4, 800, 2, 5, '2023-12-05'),
-('O Pássaro da Noite', 'Sérgio Sant’Anna', 271828, 6, 350, 3, 4, '2023-12-10'),
-('Cem Anos de Solidão', 'Gabriel García Márquez', 161803, 5, 417, 2, 3, '2023-12-15');
+INSERT INTO book (book_nome, book_autor, book_isbn, book_categoria, book_paginas, book_restantes, book_qtd_emprestados, book_data_add, book_imagem) VALUES
+('O Senhor dos Anéis', 'J.R.R. Tolkien', 123456, 2, 1178, 5, 13, '2023-01-10', 'https://dcdn.mitiendanube.com/stores/001/996/618/products/o20senhor20dos20anc3a9is20vol20220as20duas20torres20capa20serie20j-r-r-20tolkien20editora20harper20collins-eb30bb98b3fe8313aa16649876041678-1024-1024.webp'),
+('Dom Casmurro', 'Machado de Assis', 223344, 7, 256, 3, 1, '2023-02-15', 'https://m.media-amazon.com/images/I/41AYWyc6qmL._SY445_SX342_.jpg'),
+('Steve Jobs', 'Walter Isaacson', 998877, 3, 600, 2, 32, '2023-03-20', 'https://m.media-amazon.com/images/I/81wbmWlRNEL._SL1500_.jpg'),
+('A Revolução dos Bichos', 'George Orwell', 445566, 1, 152, 4, 12, '2023-04-25', 'https://m.media-amazon.com/images/I/61owA5ey3iL._SY445_SX342_.jpg'),
+('A Torre Negra', 'Stephen King', 778899, 9, 820, 6, 51, '2023-05-30', 'https://m.media-amazon.com/images/I/51fLBNCsV6L._SY445_SX342_.jpg'),
+('O Código Da Vinci', 'Dan Brown', 112233, 8, 480, 7, 22, '2023-06-10', 'https://m.media-amazon.com/images/I/91QSDmqQdaL._SY466_.jpg'),
+('Clean Code', 'Robert C. Martin', 556677, 4, 464, 5, 17, '2023-07-15', 'https://m.media-amazon.com/images/I/413za4fzZLL._SY445_SX342_.jpg'),
+('História do Brasil', 'Boris Fausto', 332211, 5, 530, 4, 0, '2023-08-20', 'https://m.media-amazon.com/images/I/512fsxhpw7L._SY445_SX342_.jpg'),
+('O Pequeno Príncipe', 'Antoine de Saint-Exupéry', 667788, 7, 120, 3, 5, '2023-09-25', 'https://m.media-amazon.com/images/I/71LJ4k-k9hL._SY466_.jpg'),
+('It: A Coisa', 'Stephen King', 887766, 9, 1104, 2, 31, '2023-10-30', 'https://m.media-amazon.com/images/I/51z0s3GcvwL._SY445_SX342_.jpg'),
+('1984', 'George Orwell', 112358, 1, 328, 4, 15, '2023-11-01', 'https://m.media-amazon.com/images/I/51feD87yuEL._SY445_SX342_.jpg'),
+('O Alquimista', 'Paulo Coelho', 987654, 5, 208, 6, 10, '2023-11-05', 'https://m.media-amazon.com/images/I/51cF7jnQGBS._SY445_SX342_.jpg'),
+('O Hobbit', 'J.R.R. Tolkien', 654321, 2, 310, 3, 20, '2023-11-10', 'https://m.media-amazon.com/images/I/91M9xPIf10L._AC_UF1000,1000_QL80_.jpg'),
+('A Menina que Roubava Livros', 'Markus Zusak', 321654, 7, 552, 2, 18, '2023-11-15', 'https://m.media-amazon.com/images/I/41pVlY-bbaL._SY445_SX342_.jpg'),
+('O Caçador de Pipas', 'Khaled Hosseini', 135791, 3, 371, 5, 11, '2023-11-20', 'https://m.media-amazon.com/images/I/41XrBearVdL._SY445_SX342_.jpg'),
+('A Culpa é das Estrelas', 'John Green', 246813, 8, 313, 4, 9, '2023-11-25', 'https://m.media-amazon.com/images/I/41yToN1cOML._SY445_SX342_.jpg'),
+('A Guerra dos Tronos', 'George R.R. Martin', 102030, 9, 694, 3, 7, '2023-12-01', 'https://m.media-amazon.com/images/I/41UKpOWrZVL._SY445_SX342_.jpg'),
+('O Livro dos Espíritos', 'Allan Kardec', 314159, 4, 800, 2, 5, '2023-12-05', 'https://m.media-amazon.com/images/I/41dOD1tpSiL._SY445_SX342_.jpg'),
+('O Pássaro da Noite', 'Sérgio Sant’Anna', 271828, 6, 350, 3, 4, '2023-12-10', 'https://cdn.lojavirtuolpro.com/editoramondrongo/produto/multifotos/hd/20220708173838_1622998378_DZ.jpg'),
+('Cem Anos de Solidão', 'Gabriel García Márquez', 161803, 5, 417, 2, 3, '2023-12-15', 'https://m.media-amazon.com/images/I/515cVYLIP9L._SY445_SX342_.jpg');
 
 INSERT INTO endereco (rua, numero, complemento, bairro, cidade, cep) VALUES
 ('Rua das Flores', '123', 'Apto 101', 'Centro', 'São Paulo', '01001-000'),

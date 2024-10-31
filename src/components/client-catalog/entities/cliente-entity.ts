@@ -12,9 +12,9 @@ class ClienteEntity {
     @Column({ name: 'client_nome', type: 'varchar', length: 50, nullable: false })
     clientNome!: string;
 
-    @ManyToOne(() => EnderecoEntity, { nullable: false })
+    @ManyToOne(() => EnderecoEntity, { nullable: true })
     @JoinColumn({ name: 'client_adress' })
-    clientAdress!: EnderecoEntity;
+    clientAdress: EnderecoEntity | null | undefined
 }
 
 export default ClienteEntity;

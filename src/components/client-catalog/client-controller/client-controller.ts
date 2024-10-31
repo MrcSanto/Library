@@ -50,26 +50,26 @@ export class ClientController {
         }
     };
     create = async (req: Request, res: Response): Promise<void> => {
-        //extraindo os valores
-        const {clientCpf, clientNome, clientAdress} = req.body;
+        try {
+            // Extraindo os valores do corpo da requisição
+            const { clientCpf, clientNome, clientAdress } = req.body;
 
-        // obtendo o repositório da entidade Endereco e buscando o endereço pelo ID
-        const adress_repo = datasource.getRepository(AdressEntity);
-        const adress = await adress_repo.findOneBy({enderecoId : clientAdress});
-        if (!adress){
-            res.status(400).send("Endereco nao encontrado");
-            return
+            // Obtendo o repositório de Endereco e buscando o endereço pelo ID, se fornecido
+            const adress_repo = datasource.getRepository(AdressEntity);
+            const adress = clientAdress ? await adress_repo.findOneBy({ enderecoId: clientAdress }) : null;
+
+            // Criando nova instância e atribuindo os valores
+            const newCliente = new ClienteEntity();
+            newCliente.clientCpf = clientCpf;
+            newCliente.clientNome = clientNome;
+            newCliente.clientAdress = adress || null;
+
+            // Salvando a nova instância no banco usando TypeORM
+            const savedCliente = await datasource.getRepository(ClienteEntity).save(newCliente);
+            res.status(201).json(savedCliente);
+        } catch (error) {
+            res.status(500).json({ message: "Erro ao criar cliente", error });
         }
-
-        //criando nova instancia e atribuindo os valores
-        const newCliente = new ClienteEntity();
-        newCliente.clientCpf = clientCpf;
-        newCliente.clientNome = clientNome;
-        newCliente.clientAdress = adress;
-
-        // e salvando a nova instancia no banco usando o typeORM
-        const savedCliente = await datasource.getRepository(ClienteEntity).save(newCliente);
-        res.status(201).json(savedCliente);
     };
     replace = async (req: Request, res: Response): Promise<void> => {
         const cliente_id = parseInt(req.params.id);

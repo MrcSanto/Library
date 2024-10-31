@@ -30,6 +30,9 @@ class BookEntity {
 
     @Column({ name: 'book_data_add', type: 'date', nullable: false })
     dataAdd!: Date;
+
+    @Column({ name: 'book_imagem', type: 'varchar', length: 255, nullable: true })
+    imagem?: string;
 }
 
 export default BookEntity;
