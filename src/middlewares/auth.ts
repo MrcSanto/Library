@@ -10,7 +10,7 @@ class Auth {
         const bearer = bearerHeader.split(' ')[1]
         const secret = process.env.JWT_SECRET || 'default_secret';
         jwt.verify(bearer, secret,  function (err: any, decoded: any) {
-            if (err) return res.status(500).json({
+            if (err) return res.status(401).json({
                 auth: false,
                 message: "Failed to authenticate token.",
                 error: err
