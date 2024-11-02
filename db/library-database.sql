@@ -144,8 +144,8 @@ INSERT INTO emprestimos (emprestimo_client, emprestimo_livro, data_emprestimo, d
 (10, 10, '2024-09-20', NULL);
 
 INSERT INTO admin (email, password, nome) VALUES
-  ('admin1@upf.br', '123456', 'Secagonopeida Dos Santos'),
-  ('admin2@upf.br', '789123', 'Pintomole Pinto da Silva');
+  ('admin1@upf.br', '$2a$10$n7jaq45B3QRRUEeQ7CWkfOnvfPHZ/bYj9EyQ3Wo0uYuydi0Gxw5B6', 'Secagonopeida Dos Santos'), --senha encriptada
+  ('admin2@upf.br', '$2a$10$DPlh8W4n3x5ZthJb81OTwOFPGb1IuX4fRpZRKu4PxuFmLoItrzgHK', 'Pintomole Pinto da Silva'); --senha encriptada
 
 
 
