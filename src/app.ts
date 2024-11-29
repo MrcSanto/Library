@@ -14,7 +14,7 @@ const app = express();
 
 // Configurando o CORS
 app.use(cors({
-    origin: 'http://localhost:5100', // Permite requisições apenas dessa origem
+    origin: ['http://localhost:5100', 'http://localhost:8081'], // Permite requisições apenas dessa origem
 }));
 
 app.use(json());
